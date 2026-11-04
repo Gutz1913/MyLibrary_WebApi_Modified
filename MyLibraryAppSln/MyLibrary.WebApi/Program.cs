@@ -1,4 +1,6 @@
 using FluentValidation;
+using Microsoft.EntityFrameworkCore;
+using MyLibrary.WebApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,7 @@ var configuration = builder.Configuration;
 //builder.Services.SetMyVaccineAuthConfiguration(configuration);
 //builder.Services.SetDependencyInjection();
 builder.Services.AddAutoMapper(cfg => { }, typeof(Program));
+
 
 //ESTE CODIGO ES  UTILIZADO PARA OBLIGAR AL SERVICIO A FUNCIONAR LOCALMENTE EN EL PUERTO 38791 PERO SI TIENES EL CONTENEDOR
 // Y EL SERVICIO VA A HABER CONFLICTO  POR QUE USAN EL MISMO PUERTO ENTONCES EN ESE CASO NO ES NECESARIO 
@@ -44,7 +47,7 @@ app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyVaccine API V1");
-    c.RoutePrefix = string.Empty; // Esto hace que Swagger abra directamente en la raíz (http://localhost:38791/)
+    c.RoutePrefix = string.Empty; // Esto hace que Swagger abra directamente en la raíz (http://localhost:38891/)
 });
 
 //app.MapGet("/", () => Results.Redirect("/swagger"));
