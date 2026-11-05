@@ -52,5 +52,38 @@ public class MappingProfile : Profile
                 dest => dest.UserFullName,
                     opt => opt.MapFrom(
                         src => src.User.FirstName + " " + src.User.LastName));
+
+        CreateMap<LoanRequestDTO, Loan>();
+        CreateMap<Loan, LoanResponseDTO>()
+            .ForMember(
+                dest => dest.CopyId,
+                opt => opt.MapFrom(
+                    src => src.Copy.Id))
+            .ForMember(
+                dest => dest.BookId,
+                    opt => opt.MapFrom(
+                        src => src.Copy.BookId))
+            .ForMember(
+                dest => dest.BookTitle,
+                    opt => opt.MapFrom(
+                        src => src.Copy.Book.Title))
+            .ForMember(
+                dest => dest.UserId,
+                    opt => opt.MapFrom(
+                        src => src.User.Id))
+            .ForMember(
+                dest => dest.UserFullName,
+                    opt => opt.MapFrom(
+                        src => src.User.FirstName + " " + src.User.LastName))
+            .ForMember(
+                dest => dest.FineId,
+                opt => opt.MapFrom(
+                    src => src.Fines.FirstOrDefault() != null ?
+                    src.Fines.FirstOrDefault()!.Id : 0))
+            .ForMember(
+                dest => dest.FineAmount,
+                opt => opt.MapFrom(
+                    src => src.Fines.FirstOrDefault() != null ?
+                    src.Fines.FirstOrDefault()!.Amount : 0m));
     }
 }
