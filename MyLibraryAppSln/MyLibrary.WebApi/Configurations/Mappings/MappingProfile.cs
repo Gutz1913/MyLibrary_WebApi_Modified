@@ -33,5 +33,24 @@ public class MappingProfile : Profile
                 dest => dest.BookTitle,
                     opt => opt.MapFrom(
                         src => src.Book.Title));
+
+        CreateMap<ReservationRequestDTO, Reservation>();
+        CreateMap<Reservation, ReservationResponseDTO>()
+            .ForMember(
+                dest => dest.BookId,
+                    opt => opt.MapFrom(
+                        src => src.Book.Id))
+            .ForMember(
+                dest => dest.BookTitle,
+                    opt => opt.MapFrom(
+                        src => src.Book.Title))
+            .ForMember(
+                dest => dest.UserId,
+                    opt => opt.MapFrom(
+                        src => src.User.Id))
+            .ForMember(
+                dest => dest.UserFullName,
+                    opt => opt.MapFrom(
+                        src => src.User.FirstName + " " + src.User.LastName));
     }
 }
