@@ -15,6 +15,7 @@ public static class DependencyInjections
         services.AddScoped<IBaseRepository<Author>, BaseRepository<Author>>();
         services.AddScoped<IBaseRepository<Category>, BaseRepository<Category>>();
         services.AddScoped<IBaseRepository<Copy>, BaseRepository<Copy>>();
+        services.AddScoped<IBaseRepository<Publisher>, BaseRepository<Publisher>>();
         #endregion
 
         #region Services Injection
@@ -22,6 +23,7 @@ public static class DependencyInjections
         services.AddScoped<IAuthorService, AuthorService>();
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<ICopyService, CopyService>();
+        services.AddScoped<IPublisherService, PublisherService>();
         #endregion
 
         return services;
