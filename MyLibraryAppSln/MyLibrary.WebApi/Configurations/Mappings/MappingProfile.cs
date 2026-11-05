@@ -85,5 +85,16 @@ public class MappingProfile : Profile
                 opt => opt.MapFrom(
                     src => src.Fines.FirstOrDefault() != null ?
                     src.Fines.FirstOrDefault()!.Amount : 0m));
+
+        CreateMap<FineRequestDTO, Fine>();
+        CreateMap<Fine, FineResponseDTO>()
+            .ForMember(
+                dest => dest.UserId,
+                    opt => opt.MapFrom(
+                        src => src.User.Id))
+            .ForMember(
+                dest => dest.UserFullName,
+                    opt => opt.MapFrom(
+                        src => src.User.FirstName + " " + src.User.LastName));
     }
 }
