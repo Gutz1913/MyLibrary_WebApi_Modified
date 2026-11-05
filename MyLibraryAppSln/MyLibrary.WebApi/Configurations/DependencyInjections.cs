@@ -19,6 +19,8 @@ public static class DependencyInjections
         services.AddScoped<IBaseRepository<Reservation>, BaseRepository<Reservation>>();
         services.AddScoped<IBaseRepository<Loan>, BaseRepository<Loan>>();
         services.AddScoped<IBaseRepository<Fine>, BaseRepository<Fine>>();
+        services.AddScoped<IBaseRepository<BookAuthor>, BaseRepository<BookAuthor>>();
+        services.AddScoped<IBaseRepository<BookCategory>, BaseRepository<BookCategory>>();
         #endregion
 
         #region Services Injection
