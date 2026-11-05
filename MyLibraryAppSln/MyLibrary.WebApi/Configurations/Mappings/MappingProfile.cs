@@ -19,5 +19,8 @@ public class MappingProfile : Profile
 
         CreateMap<AuthorRequestDTO, Author>();
         CreateMap<Author, AuthorResponseDTO>();
+
+        CreateMap<CategoryRequestDTO, Category>();
+        CreateMap<Category, CategoryResponseDTO>();
     }
 }
