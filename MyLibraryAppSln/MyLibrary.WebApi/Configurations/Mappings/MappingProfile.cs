@@ -22,5 +22,16 @@ public class MappingProfile : Profile
 
         CreateMap<CategoryRequestDTO, Category>();
         CreateMap<Category, CategoryResponseDTO>();
+
+        CreateMap<CopyRequestDTO, Copy>();
+        CreateMap<Copy, CopyResponseDTO>()
+            .ForMember(
+                dest => dest.BookId,
+                    opt => opt.MapFrom(
+                        src => src.Book.Id))
+            .ForMember(
+                dest => dest.BookTitle,
+                    opt => opt.MapFrom(
+                        src => src.Book.Title));
     }
 }
