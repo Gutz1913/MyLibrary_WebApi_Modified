@@ -56,7 +56,7 @@ public class CopyService : ICopyService
             .Include(c => c.Book)
             .ToListAsync();
 
-        if (copiesByBook == null)
+        if (!copiesByBook.Any())
             throw new KeyNotFoundException($"No se encontraron copias para el libro con ID {bookId}.");
 
         var response = _mapper.Map<IEnumerable<CopyResponseDTO>>(copiesByBook);
