@@ -1,0 +1,20 @@
+﻿using AutoMapper;
+using MyLibrary.WebApi.DTOs.Request;
+using MyLibrary.WebApi.DTOs.Response;
+using MyLibrary.WebApi.Models;
+
+namespace MyLibrary.WebApi.Configurations.Mappings;
+
+public class MappingProfile : Profile
+{
+    public MappingProfile()
+    {
+        CreateMap<UpdateUserRequestDTO, User>();
+        CreateMap<User, UserResponseDTO>()
+            .ForMember(
+                dest => dest.UserName,
+                opt => opt.MapFrom(
+                    src => src.AspNetUser != null ?
+                    src.AspNetUser.UserName : string.Empty));
+    }
+}
