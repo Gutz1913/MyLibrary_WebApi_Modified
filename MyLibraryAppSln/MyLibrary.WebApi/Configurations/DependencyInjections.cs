@@ -18,6 +18,7 @@ public static class DependencyInjections
         services.AddScoped<IBaseRepository<Publisher>, BaseRepository<Publisher>>();
         services.AddScoped<IBaseRepository<Reservation>, BaseRepository<Reservation>>();
         services.AddScoped<IBaseRepository<Loan>, BaseRepository<Loan>>();
+        services.AddScoped<IBaseRepository<Fine>, BaseRepository<Fine>>();
         #endregion
 
         #region Services Injection
@@ -28,6 +29,7 @@ public static class DependencyInjections
         services.AddScoped<IPublisherService, PublisherService>();
         services.AddScoped<IReservationService, ReservationService>();
         services.AddScoped<ILoanService, LoanService>();
+        services.AddScoped<IFineService, FineService>();
         #endregion
 
         return services;
