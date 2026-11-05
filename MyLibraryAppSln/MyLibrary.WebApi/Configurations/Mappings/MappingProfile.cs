@@ -16,5 +16,8 @@ public class MappingProfile : Profile
                 opt => opt.MapFrom(
                     src => src.AspNetUser != null ?
                     src.AspNetUser.UserName : string.Empty));
+
+        CreateMap<AuthorRequestDTO, Author>();
+        CreateMap<Author, AuthorResponseDTO>();
     }
 }
