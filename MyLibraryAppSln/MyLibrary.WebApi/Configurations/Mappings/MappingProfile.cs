@@ -33,5 +33,8 @@ public class MappingProfile : Profile
                 dest => dest.BookTitle,
                     opt => opt.MapFrom(
                         src => src.Book.Title));
+
+        CreateMap<PublisherRequestDTO, Publisher>();
+        CreateMap<Publisher, PublisherResponseDTO>();
     }
 }
