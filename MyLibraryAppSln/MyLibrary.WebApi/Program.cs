@@ -1,6 +1,7 @@
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using MyLibrary.WebApi.Models;
+using MyVaccine.WebApi.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,9 +10,9 @@ builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var configuration = builder.Configuration;
-//builder.Services.SetDatabaseConfiguration(configuration);
-//builder.Services.SetMyVaccineAuthConfiguration(configuration);
-//builder.Services.SetDependencyInjection();
+builder.Services.SetDatabaseConfiguration(configuration);
+builder.Services.SetMyLibraryAuthConfiguration(configuration);
+builder.Services.SetDependencyInjection();
 builder.Services.AddAutoMapper(cfg => { }, typeof(Program));
 
 
