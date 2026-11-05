@@ -59,7 +59,7 @@ public class ReservationService : IReservationService
             .ToListAsync();
 
         if (!reservationsByBook.Any())
-            throw new KeyNotFoundException($"No se encontraron reservaciones para el libro con ID {bookId}.");
+            throw new KeyNotFoundException($"No se encontraron reservaciones asociadas al libro con ID {bookId}.");
 
         var response = _mapper.Map<IEnumerable<ReservationResponseDTO>>(reservationsByBook);
 
@@ -75,7 +75,7 @@ public class ReservationService : IReservationService
             .ToListAsync();
 
         if (!reservationsByUser.Any())
-            throw new KeyNotFoundException($"No se encontraron reservaciones para el usuario con ID {userId}.");
+            throw new KeyNotFoundException($"No se encontraron reservaciones asociadas al usuario con ID {userId}.");
 
         var response = _mapper.Map<IEnumerable<ReservationResponseDTO>>(reservationsByUser);
 
