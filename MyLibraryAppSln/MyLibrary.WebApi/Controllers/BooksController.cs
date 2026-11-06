@@ -59,9 +59,15 @@ public class BooksController : ControllerBase
     [HttpGet("get-books-by-author/{authorId}")]
     public async Task<IActionResult> GetBooksByAuthorId(int authorId)
     {
-        var books = await _bookService.GetBooksByAuthorId(authorId);
-
-        return Ok(books);
+        try
+        {
+            var books = await _bookService.GetBooksByAuthorId(authorId);
+            return Ok(books);
+        }
+        catch (Exception ex)
+        {
+            return NotFound(new { message = ex.Message });
+        }
     }
 
     [HttpPost]
@@ -108,24 +114,33 @@ public class BooksController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(int id, BookRequestDTO bookDto)
     {
-        var book = await _bookService.Update(id, bookDto);
-        if (book == null)
+        try
         {
-            return NotFound();
+            var validationResult = await _validator.ValidateAsync(bookDto);
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors);
+            }
+            var book = await _bookService.Update(id, bookDto);
+            return Ok(book);
         }
-
-        return Ok(book);
+        catch (Exception ex)
+        {
+            return NotFound(new { message = ex.Message });
+        }
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        var book = await _bookService.Delete(id);
-        if (book == null)
+        try
         {
-            return NotFound();
+            var book = await _bookService.Delete(id);
+            return Ok(book);
         }
-
-        return Ok(book);
+        catch (Exception ex)
+        {
+            return NotFound(new { message = ex.Message });
+        }
     }
 }
