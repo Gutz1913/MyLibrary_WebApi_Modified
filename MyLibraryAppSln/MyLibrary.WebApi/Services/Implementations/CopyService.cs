@@ -103,6 +103,11 @@ public class CopyService : ICopyService
         copy.BookId = request.BookId;
 
         await _copyRepository.Update(copy);
+        var copyWithDetails = await _copyRepository
+            .FindBy(c => c.Id == copy.Id)
+            .Include(c => c.Book)
+            .FirstOrDefaultAsync();
+
         var response = _mapper.Map<CopyResponseDTO>(copy);
 
         return response;
